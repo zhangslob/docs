@@ -1,5 +1,5 @@
-site_name: Spiders
+site_name: 数据采集从入门到放弃
 nav:
-    - Home: index.md
-    - About: about.md
-theme: material
+    - 介绍: index.md
+    - 目录: content.md
+theme: readthedocs
