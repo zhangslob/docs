@@ -2,5 +2,13 @@ site_name: 数据采集从入门到放弃
 nav:
     - 介绍: index.md
     - 目录: content.md
-    - 第一章：爬虫介绍: introduce_spider.md
+    - 第一章:爬虫介绍: 
+      - 爬虫介绍: introduce_spider/introduce_spider.md
+      - 爬虫面试: introduce_spider/spider_interview.md
+    - 第二章：HTTP协议介绍: 
+      - HTTP协议: network/HTTP.md
+      - TCP协议: network/TCP.md
+
+
 theme: readthedocs
+
