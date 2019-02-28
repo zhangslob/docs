@@ -103,6 +103,10 @@
 
     </ul>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../session/">实战：模拟登陆</a>
+                </li>
     </ul>
 	    </li>
           
@@ -164,42 +168,21 @@
 <p><img alt="three-way-handshake" src="https://raw.githubusercontent.com/HIT-Alibaba/interview/master/img/tcp-connection-made-three-way-handshake.png" /></p>
 <p>TCP 的连接的拆除需要发送四个包，因此称为四次挥手(Four-way handshake)，也叫做改进的三次握手。客户端或服务器均可主动发起挥手动作，在 socket 编程中，任何一方执行 <code>close()</code> 操作即可产生挥手操作。</p>
 <ul>
-<li>第一次挥手(FIN=1，seq=x)</li>
+<li>第一次挥手(FIN=1，seq=x)：假设客户端想要关闭连接，客户端发送一个 FIN 标志位置为1的包，表示自己已经没有数据可以发送了，但是仍然可以接受数据。发送完毕后，客户端进入 <code>FIN_WAIT_1</code> 状态。</li>
+<li>第二次挥手(ACK=1，ACKnum=x+1)：服务器端确认客户端的 FIN 包，发送一个确认包，表明自己接受到了客户端关闭连接的请求，但还没有准备好关闭连接。发送完毕后，服务器端进入 <code>CLOSE_WAIT</code> 状态，客户端接收到这个确认包之后，进入 <code>FIN_WAIT_2</code> 状态，等待服务器端关闭连接。</li>
+<li>第三次挥手(FIN=1，seq=y)：服务器端准备好关闭连接时，向客户端发送结束连接请求，FIN 置为1。发送完毕后，服务器端进入 <code>LAST_ACK</code> 状态，等待来自客户端的最后一个ACK。</li>
+<li>第四次挥手(ACK=1，ACKnum=y+1)：客户端接收到来自服务器端的关闭请求，发送一个确认包，并进入 <code>TIME_WAIT</code>状态，等待可能出现的要求重传的 ACK 包。服务器端接收到这个确认包之后，关闭连接，进入 <code>CLOSED</code> 状态。客户端等待了某个固定时间（两个最大段生命周期，2MSL，2 Maximum Segment Lifetime）之后，没有收到服务器端的 ACK ，认为服务器端已经正常关闭连接，于是自己也关闭连接，进入 <code>CLOSED</code> 状态。</li>
 </ul>
-<p>假设客户端想要关闭连接，客户端发送一个 FIN 标志位置为1的包，表示自己已经没有数据可以发送了，但是仍然可以接受数据。</p>
-<p>发送完毕后，客户端进入 <code>FIN_WAIT_1</code> 状态。</p>
-<ul>
-<li>第二次挥手(ACK=1，ACKnum=x+1)</li>
-</ul>
-<p>服务器端确认客户端的 FIN 包，发送一个确认包，表明自己接受到了客户端关闭连接的请求，但还没有准备好关闭连接。</p>
-<p>发送完毕后，服务器端进入 <code>CLOSE_WAIT</code> 状态，客户端接收到这个确认包之后，进入 <code>FIN_WAIT_2</code> 状态，等待服务器端关闭连接。</p>
-<ul>
-<li>第三次挥手(FIN=1，seq=y)</li>
-</ul>
-<p>服务器端准备好关闭连接时，向客户端发送结束连接请求，FIN 置为1。</p>
-<p>发送完毕后，服务器端进入 <code>LAST_ACK</code> 状态，等待来自客户端的最后一个ACK。</p>
-<ul>
-<li>第四次挥手(ACK=1，ACKnum=y+1)</li>
-</ul>
-<p>客户端接收到来自服务器端的关闭请求，发送一个确认包，并进入 <code>TIME_WAIT</code>状态，等待可能出现的要求重传的 ACK 包。</p>
-<p>服务器端接收到这个确认包之后，关闭连接，进入 <code>CLOSED</code> 状态。</p>
-<p>客户端等待了某个固定时间（两个最大段生命周期，2MSL，2 Maximum Segment Lifetime）之后，没有收到服务器端的 ACK ，认为服务器端已经正常关闭连接，于是自己也关闭连接，进入 <code>CLOSED</code> 状态。</p>
 <p>四次挥手的示意图如下：</p>
 <p><img alt="four-way-handshake" src="https://raw.githubusercontent.com/HIT-Alibaba/interview/master/img/tcp-connection-closed-four-way-handshake.png" /></p>
 <h2 id="syn">SYN攻击</h2>
-<ul>
-<li>什么是 SYN 攻击（SYN Flood）？</li>
-</ul>
+<h3 id="syn-syn-flood">什么是 SYN 攻击（SYN Flood）？</h3>
 <p>在三次握手过程中，服务器发送 SYN-ACK 之后，收到客户端的 ACK 之前的 TCP 连接称为半连接(half-open connect)。此时服务器处于 SYN_RCVD 状态。当收到 ACK 后，服务器才能转入 ESTABLISHED 状态.</p>
 <p>SYN 攻击指的是，攻击客户端在短时间内伪造大量不存在的IP地址，向服务器不断地发送SYN包，服务器回复确认包，并等待客户的确认。由于源地址是不存在的，服务器需要不断的重发直至超时，这些伪造的SYN包将长时间占用未连接队列，正常的SYN请求被丢弃，导致目标系统运行缓慢，严重者会引起网络堵塞甚至系统瘫痪。</p>
 <p>SYN 攻击是一种典型的 DoS/DDoS 攻击。</p>
-<ul>
-<li>如何检测 SYN 攻击？</li>
-</ul>
+<h3 id="syn_1">如何检测 SYN 攻击？</h3>
 <p>检测 SYN 攻击非常的方便，当你在服务器上看到大量的半连接状态时，特别是源IP地址是随机的，基本上可以断定这是一次SYN攻击。在 Linux/Unix 上可以使用系统自带的 netstats 命令来检测 SYN 攻击。</p>
-<ul>
-<li>如何防御 SYN 攻击？</li>
-</ul>
+<h3 id="syn_2">如何防御 SYN 攻击？</h3>
 <p>SYN攻击不能完全被阻止，除非将TCP协议重新设计。我们所做的是尽可能的减轻SYN攻击的危害，常见的防御 SYN 攻击的方法有如下几种：</p>
 <ul>
 <li>缩短超时（SYN Timeout）时间</li>
@@ -221,12 +204,16 @@
 <li><a href="http://www.tldp.org/HOWTO/html_single/TCP-Keepalive-HOWTO/">TCP-Keepalive-HOWTO</a></li>
 <li><a href="https://hit-alibaba.github.io/interview/basic/network/TCP.html"> TCP 的特性</a></li>
 </ul>
+<hr />
+<p>如果有任何疑问，请<a href="https://github.com/zhangslob/docs/issues/2">在此交流</a>。</p>
               
             </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../session/" class="btn btn-neutral float-right" title="实战：模拟登陆">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../HTTP/" class="btn btn-neutral" title="HTTP协议"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -257,6 +244,8 @@
       
         <span><a href="../HTTP/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../session/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
