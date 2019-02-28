@@ -8,6 +8,7 @@ nav:
     - 第二章：HTTP协议介绍: 
       - HTTP协议: network/HTTP.md
       - TCP协议: network/TCP.md
+      - 实战：模拟登陆: network/session.md
 
 
 theme: readthedocs

@@ -171,3 +171,6 @@ while (true) {
 - [百度百科：HTTP](http://baike.baidu.com/view/9472.htm)
 - [ HTTP的特性](https://hit-alibaba.github.io/interview/basic/network/HTTP.html)
 
+---
+
+如果有任何疑问，请[在此交流](https://github.com/zhangslob/docs/issues/2)。
