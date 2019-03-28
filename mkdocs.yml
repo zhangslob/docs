@@ -9,6 +9,9 @@ nav:
       - HTTP协议: network/HTTP.md
       - TCP协议: network/TCP.md
       - 实战：模拟登陆: network/session.md
+    - 第三章：Requests使用:
+      - Requests基础使用: requests/basic_useage.md
+      - Requests源码分析: requests/request_source_code.md
 
 
 theme: readthedocs
