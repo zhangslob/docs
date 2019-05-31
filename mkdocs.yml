@@ -12,6 +12,7 @@ nav:
     - 第三章：Requests使用:
       - Requests基础使用: requests/basic_useage.md
       - Requests源码分析: requests/request_source_code.md
+      - 注意事项: requests/request_attention.md
 
 
 theme: readthedocs
