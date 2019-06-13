@@ -122,3 +122,5 @@ ENV/
 Pipfile
 !/qq_news/qq_news/qq_news/main.py
 /_config.yml
+
+.DS_Store
