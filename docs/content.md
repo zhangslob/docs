@@ -31,9 +31,16 @@
 2. 核心API
 3. 注意事项
 
+## 第四章：Xpath介绍
 
+1. lxml使用
+2. scrapy的selector
+3. 注意事项
 
+## 第五章：MongoDB与MySQL
 
-
+1. MongoDB使用
+2. MySQL使用
+3. 注意事项
 
 

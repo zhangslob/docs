@@ -1,7 +1,7 @@
 数据采集从入门到放弃
 ====================
 
-## [《数据采集从入门到放弃》源码](https://github.com/zhangslob/docs)
+### [Github地址](https://github.com/zhangslob/docs)
 
 
 
@@ -19,6 +19,9 @@
 6. 多线程爬虫
 7. Scrapy介绍
 8. Scrapy-redis介绍
+9. 使用docker部署
+10. 使用nomad管理docker集群
+11. 使用EFK查询docker日志
 
 可能还会增加一些别的（放弃），如：
 
@@ -38,7 +41,7 @@
 
 这其中的每一点都需要花很多时间去研究，希望我们一起进步。
 
-![](https://ws3.sinaimg.cn/large/006tKfTcly1g077kx4c26j308c04oaa8.jpg)
+![](https://camo.githubusercontent.com/e738c0e672e83d6dbcb0e2dd482535d4defc8ab6/68747470733a2f2f7773332e73696e61696d672e636e2f6c617267652f303036744b6654636c7931673037376b78346332366a3330386330346f6161382e6a7067)
 
 
 

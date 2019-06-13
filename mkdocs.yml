@@ -13,6 +13,14 @@ nav:
       - Requests基础使用: requests/basic_useage.md
       - Requests源码分析: requests/request_source_code.md
       - 注意事项: requests/request_attention.md
+    - 第四章：Xpath介绍:
+      - lxml使用: xpath/lxml.md
+      - scrapy的selector: xpath/scrapy_selector.md
+      - 注意事项: xpath/attention.md
+    - 第五章：MongoDB与MySQL:
+      - MongoDB使用: database/MongoDB.md
+      - MySQL使用: database/MySQL.md
+      - 注意事项: database/attention.md
 
 
 theme: readthedocs
