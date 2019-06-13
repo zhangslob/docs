@@ -14,6 +14,9 @@
 6. 多线程爬虫
 7. Scrapy介绍
 8. Scrapy-redis介绍
+9. 使用docker部署
+10. 使用nomad管理docker集群
+11. 使用EFK查询docker日志
 
 可能还会增加一些别的，主要是看心情。如：
 
