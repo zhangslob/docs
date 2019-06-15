@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>MongoDB使用 - 数据采集从入门到放弃</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "MongoDB\u4f7f\u7528";
+    var mkdocs_page_input_path = "database/MongoDB.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> 数据采集从入门到放弃</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">介绍</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../content/">目录</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">第一章:爬虫介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduce_spider/introduce_spider/">爬虫介绍</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduce_spider/spider_interview/">爬虫面试</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">第二章：HTTP协议介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../network/HTTP/">HTTP协议</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../network/TCP/">TCP协议</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../network/session/">实战：模拟登陆</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">第三章：Requests使用</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../requests/basic_useage/">Requests基础使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../requests/request_source_code/">Requests源码分析</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../requests/request_attention/">注意事项</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">第四章：Xpath介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../xpath/lxml/">lxml使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../xpath/scrapy_selector/">scrapy的selector</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../xpath/attention/">注意事项</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">第五章：MongoDB与MySQL</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">MongoDB使用</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#mongodb">MongoDB使用</a></li>
+    
+
+    <li class="toctree-l3"><a href="#_1">环境安装</a></li>
+    
+
+    <li class="toctree-l3"><a href="#pythonmongodb">Python操作MongoDB</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#_2">连接</a></li>
+        
+            <li><a class="toctree-l4" href="#_3">创建索引</a></li>
+        
+            <li><a class="toctree-l4" href="#_4">插入数据</a></li>
+        
+            <li><a class="toctree-l4" href="#_5">查询数据</a></li>
+        
+            <li><a class="toctree-l4" href="#_6">错误判断</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#_7">作业</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../MySQL/">MySQL使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../attention/">注意事项</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">数据采集从入门到放弃</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>第五章：MongoDB与MySQL &raquo;</li>
+        
+      
+    
+    <li>MongoDB使用</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="mongodb">MongoDB使用</h1>
+<p>MongoDB在爬虫中是最常见的数据库选择，因为够灵活多变，简单好用。</p>
+<h1 id="_1">环境安装</h1>
+<p>使用docker一键安装：<code>docker run --name some-mongo -d mongo</code></p>
+<p><code>pip3 install pymongo</code></p>
+<h1 id="pythonmongodb">Python操作MongoDB</h1>
+<h2 id="_2">连接</h2>
+<pre><code class="python">import pymongo
+
+client = pymongo.MongoClient()
+</code></pre>
+
+<p>推荐使用<code>MongoDB_URL</code>传递MongoDB地址，<code>MongoDB_URL</code>格式：`mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]</p>
+<p>例如连接本地的<code>test</code>数据库：<code>mongodb://localhost/test</code>
+例如连接本地需要验证的<code>test</code>数据库：<code>mongodb://admin:123456@localhost/test</code></p>
+<p>获取数据库的方法如下：</p>
+<pre><code class="python">import pymongo
+
+client = pymongo.MongoClient('mongodb://localhost/test')
+db = client.get_database()
+</code></pre>
+
+<h2 id="_3">创建索引</h2>
+<pre><code class="python">import pymongo
+
+client = pymongo.MongoClient('mongodb://localhost/test')
+db = client.get_database()
+
+collection = db['test_collection']
+collection.create_index('index')
+collection.create_index('id', unique=True)
+</code></pre>
+
+<p>我们这里连接到本地MongoDB的test数据库下的test_collection，然后在test_collection这张表上面创建了两个索引：</p>
+<ol>
+<li>index：普通索引</li>
+<li>id：唯一索引，不允许重复</li>
+</ol>
+<blockquote>
+<p>不要建太多无用索引，也不要重复建索引</p>
+</blockquote>
+<h2 id="_4">插入数据</h2>
+<p>单条数据插入：</p>
+<pre><code class="python">import pymongo
+
+client = pymongo.MongoClient('mongodb://localhost/test')
+db = client.get_database()
+
+collection = db['test_collection']
+# 不要再创建索引了
+
+data = {'name': &quot;zhang&quot;, 'age': 18}
+collection.insert_one(data)
+</code></pre>
+
+<p>然后就可以查看了，这里使用的是Robot 3t</p>
+<p><img alt="" src="https://i.loli.net/2019/06/13/5d01f286151c437037.png" /></p>
+<p>插入多条。如果有很多数据插入，可以选择此种方法，效率会比单条插入高，对数据库压力也会更小。</p>
+<pre><code class="python">import pymongo
+
+client = pymongo.MongoClient('mongodb://localhost/test')
+db = client.get_database()
+
+collection = db['test_collection']
+
+data = [
+    {&quot;name&quot;: &quot;Taobao&quot;, &quot;alexa&quot;: &quot;100&quot;, &quot;url&quot;: &quot;https://www.taobao.com&quot;},
+    {&quot;name&quot;: &quot;QQ&quot;, &quot;alexa&quot;: &quot;101&quot;, &quot;url&quot;: &quot;https://www.qq.com&quot;},
+    {&quot;name&quot;: &quot;Facebook&quot;, &quot;alexa&quot;: &quot;10&quot;, &quot;url&quot;: &quot;https://www.facebook.com&quot;},
+    {&quot;name&quot;: &quot;知乎&quot;, &quot;alexa&quot;: &quot;103&quot;, &quot;url&quot;: &quot;https://www.zhihu.com&quot;},
+    {&quot;name&quot;: &quot;Github&quot;, &quot;alexa&quot;: &quot;109&quot;, &quot;url&quot;: &quot;https://www.github.com&quot;}
+]
+collection.insert_many(data, ordered=False)
+</code></pre>
+
+<p>如果我们直接运行是会报错的，因为我们上面有创建唯一索引，而且文档中都没有<code>id</code>这个字段，所以我们需要先删除索引<code>id</code>，然后再插入数据。</p>
+<p><img alt="" src="https://i.loli.net/2019/06/13/5d01f426cce8f41482.png" /></p>
+<h2 id="_5">查询数据</h2>
+<p>这里就包含很多知识了，MongoDB查询方法真的有很多，<a href="https://docs.mongodb.com/manual/tutorial/query-documents/">看文档</a></p>
+<h2 id="_6">错误判断</h2>
+<p>上面我们说到，我们有建了唯一索引，比如是<code>id</code>，如果插入重复的<code>id</code>，是会报错的，我们可以捕获这个异常。</p>
+<pre><code class="python">try:
+    collection.insert_one(data)
+except pymongo.errors.DuplicateKeyError:
+    print('重复插入数据：{}'.format(data))
+</code></pre>
+
+<h1 id="_7">作业</h1>
+<p>阅读理解这些文章：<a href="https://zhangslob.github.io/tags/MongoDB/">MongoDB 标签</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../MySQL/" class="btn btn-neutral float-right" title="MySQL使用">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../xpath/attention/" class="btn btn-neutral" title="注意事项"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../xpath/attention/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../MySQL/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>注意事项 - 数据采集从入门到放弃</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u6ce8\u610f\u4e8b\u9879";
+    var mkdocs_page_input_path = "requests/request_attention.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> 数据采集从入门到放弃</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">介绍</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../content/">目录</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">第一章:爬虫介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../introduce_spider/introduce_spider/">爬虫介绍</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../introduce_spider/spider_interview/">爬虫面试</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">第二章：HTTP协议介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../network/HTTP/">HTTP协议</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../network/TCP/">TCP协议</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../network/session/">实战：模拟登陆</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">第三章：Requests使用</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../basic_useage/">Requests基础使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../request_source_code/">Requests源码分析</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">注意事项</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#_1">注意事项</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#ssl">SSL证书认证</a></li>
+        
+            <li><a class="toctree-l4" href="#_2">超时设置</a></li>
+        
+            <li><a class="toctree-l4" href="#_3">封装</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">第四章：Xpath介绍</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../xpath/lxml/">lxml使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../xpath/scrapy_selector/">scrapy的selector</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../xpath/attention/">注意事项</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">第五章：MongoDB与MySQL</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../database/MongoDB/">MongoDB使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../database/MySQL/">MySQL使用</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../database/attention/">注意事项</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">数据采集从入门到放弃</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>第三章：Requests使用 &raquo;</li>
+        
+      
+    
+    <li>注意事项</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">注意事项</h1>
+<p>有时间一定要熟悉Requests的文档：<a href="https://2.python-requests.org//zh_CN/latest/#requests-http">Requests: 让 HTTP 服务人类¶</a></p>
+<p>Requests 完全满足今日 web 的需求。</p>
+<ul>
+<li>Keep-Alive &amp; 连接池</li>
+<li>国际化域名和 URL</li>
+<li>带持久 Cookie 的会话</li>
+<li>浏览器式的 SSL 认证</li>
+<li>自动内容解码</li>
+<li>基本/摘要式的身份认证</li>
+<li>优雅的 key/value Cookie</li>
+<li>自动解压</li>
+<li>Unicode 响应体</li>
+<li>HTTP(S) 代理支持</li>
+<li>文件分块上传</li>
+<li>流下载</li>
+<li>连接超时</li>
+<li>分块请求</li>
+<li>支持 <code>.netrc</code></li>
+</ul>
+<p>我会列举一些使用Requests时需要注意的点。</p>
+<h2 id="ssl">SSL证书认证</h2>
+<p>Requests 可以为 HTTPS 请求验证 SSL 证书，就像 web 浏览器一样。SSL 验证默认是开启的，如果证书验证失败，Requests 会抛出 SSLError:</p>
+<pre><code class="python">&gt;&gt;&gt; requests.get('https://requestb.in')
+requests.exceptions.SSLError: hostname 'requestb.in' doesn't match either of '*.herokuapp.com', 'herokuapp.com'
+</code></pre>
+
+<p>如果你将 <code>verify</code> 设置为 False，Requests 也能忽略对 SSL 证书的验证。</p>
+<pre><code class="python">&gt;&gt;&gt; requests.get('https://kennethreitz.org', verify=False)
+&lt;Response [200]&gt;
+</code></pre>
+
+<p>默认情况下， <code>verify</code> 是设置为 True 的。选项 <code>verify</code> 仅应用于主机证书。</p>
+<blockquote>
+<p>对于私有证书，你也可以传递一个 CA_BUNDLE 文件的路径给 <code>verify</code>。你也可以设置 # <code>REQUEST_CA_BUNDLE</code> 环境变量。</p>
+</blockquote>
+<h2 id="_2">超时设置</h2>
+<p>为防止服务器不能及时响应，大部分发至外部服务器的请求都应该带着 timeout 参数。在默认情况下，除非显式指定了 timeout 值，requests 是不会自动进行超时处理的。如果没有 timeout，你的代码可能会挂起若干分钟甚至更长时间。</p>
+<pre><code class="python">r = requests.get('https://github.com', timeout=10)
+</code></pre>
+
+<p>我一般会把超时时间设为10秒。</p>
+<h2 id="_3">封装</h2>
+<p>如果你需要频繁使用Requests发送请求是，最好是将其封装成一个通用方法。</p>
+<p>例如这里是对post方法的简单封装，当然需要根据自己需求来做。</p>
+<pre><code class="python">import requests
+import json as json_
+
+
+class Session(object):
+
+    def __init__(self):
+        self.session = requests.session()
+
+    def post(self, url, data=None, json=None, **kwargs):
+        retry_times = 0
+        while True:
+            try:
+                res = self.session.post(url, data=data, json=json, **kwargs)
+            except (requests.exceptions.ConnectionError, requests.ReadTimeout):
+                pass
+            else:
+                try:
+                    res.json()
+                except json_.JSONDecodeError:
+                    retry_times += 1
+                    if retry_times &gt; 20:
+                        return None
+                    else:
+                        continue
+
+                return res
+</code></pre>
+
+<p>还可以看看这里，借鉴别人的思想：<a href="https://developpaper.com/pythons-encapsulation-of-requests/">Python’s encapsulation of requests</a></p>
+<pre><code class="python"># -*- coding:utf-8 -*-
+
+import requests
+from concurrent.futures import ThreadPoolExecutor
+Read from Tools.Config import Config configuration file
+From Tools. Log import Log # log management
+From Tools. tools import decoLOG log decoration
+
+'''
+  Functions: Requests class
+  Usage method: 
+  Author: Guo Kechang
+  Time of completion: 20180224
+  Update:
+  Update time:
+'''
+class Requests(object):
+  def __init__(self):
+    self.session = requests.session()
+    self.header = {}
+    # By default, URLs come from configuration files to facilitate switching between different test environments, and can also be set dynamically.
+    self.URL = Config().getURL()
+    # Default 60s, can be set dynamically
+    self.timeout = 60
+    # When HTTP connection is abnormal, the number of reconnections is 3 by default. It can be set dynamically.
+    self.iRetryNum = 3
+
+    self.errorMsg = &quot;&quot;
+    # Content = {Use Case Number: Response Data}
+    self.responses = {}
+    # Content = {Use Case Number: Exception Information}
+    self.resErr={}
+
+
+  # Retention of original post usage
+  # bodyData: request's data
+  @decoLOG
+  def post(self, bodyData):
+    response = None
+    self.errorMsg = &quot;&quot;
+
+    try:
+      response = self.session.post(self.URL, data=bodyData.encode('utf-8'), headers=self.header, timeout=self.timeout)
+      response.raise_for_status()
+    except Exception as e:
+      self.errorMsg = str(e)
+      Log (). logger. error (&quot;HTTP request exception, exception information:% s&quot;% self. errorMsg)
+    return response
+
+
+  # Complex request concurrent processing, in the form of thread pool, use case &gt; thread pool capacity: thread pool capacity is concurrent, otherwise, use case number is concurrent
+  # dicDatas: {Use Case Number: Use Case Data}
+  @decoLOG
+  def req_all(self, dicDatas, iThreadNum=5):
+
+    if len(dict(dicDatas)) &lt; 1:
+      Log (). logger. error (&quot;No test object, please confirm and try again...&quot; &quot;&quot;
+      return self.responses.clear()
+
+    # Request use case set conversion (use case number, use case data)
+    seed = [i for i in dicDatas.items()]
+    self.responses.clear()
+
+    # Thread pool concurrent execution, iThreadNum concurrent number
+    with ThreadPoolExecutor(iThreadNum) as executor:
+      executor.map(self.req_single,seed)
+
+    # Returns response information for all requests ({use case number: response data}), HTTP connection exception: corresponding to None
+    return self.responses
+
+  # For single use case submission, HTTP connection failures can be reconnected, and the maximum number of reconnections can be dynamically set
+  def req_single(self, listData, reqType=&quot;post&quot;, iLoop=1):
+    response = None
+    # If the maximum number of reconnections is reached, the submission ends after the connection
+    if iLoop == self.iRetryNum:
+      if reqType == &quot;post&quot;:
+        try:
+          response = requests.post(self.URL, data=listData[1].encode('utf-8'), headers=self.header,
+                       timeout=self.timeout)
+          response.raise_for_status()
+        except Exception as e:
+          # Exception information is saved only when the maximum number of connections is reached, but the maximum number of connections is not reached. Exception information is empty.
+          self.resErr[listData[0]] = str(e)
+          Log (). logger. error (&quot;HTTP request exception, exception information:% s [% d]% (str (e), iLoop))
+
+        self.responses[listData[0]] = response
+      else:
+        # for future： other request method expand
+        pass
+    # The maximum number of connections is not reached, and if an exception occurs, a reconnection attempt is made
+    else:
+      if reqType == &quot;post&quot;:
+        try:
+          response = requests.post(self.URL, data=listData[1].encode('utf-8'), headers=self.header,
+                       timeout=self.timeout)
+          response.raise_for_status()
+        except Exception as e:
+          Log (). logger. error (&quot;HTTP request exception, exception information:% s [% d]% (str (e), iLoop))
+          # Increased number of reconnections
+          iLoop += 1
+          # Reconnect
+          self.req_single(listData, reqType, iLoop)
+          # Current connection termination
+          return None
+        self.responses[listData[0]] = response
+      else:
+        # for future： other request method expand
+        pass
+
+  # Set up SoapAction to complete the header setting of web service interface quickly
+  def setSoapAction(self, soapAction):
+    self.header[&quot;SOAPAction&quot;] = soapAction
+    self.header[&quot;Content-Type&quot;] = &quot;text/xml;charset=UTF-8&quot;
+    self.header[&quot;Connection&quot;] = &quot;Keep-Alive&quot;
+    self.header[&quot;User-Agent&quot;] = &quot;InterfaceAutoTest-run&quot;
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../xpath/lxml/" class="btn btn-neutral float-right" title="lxml使用">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../request_source_code/" class="btn btn-neutral" title="Requests源码分析"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../request_source_code/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../xpath/lxml/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

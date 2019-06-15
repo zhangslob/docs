@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Requests基础使用 - 数据采集从入门到放弃</title>
+  <title>MySQL使用 - 数据采集从入门到放弃</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Requests\u57fa\u7840\u4f7f\u7528";
-    var mkdocs_page_input_path = "requests/basic_useage.md";
+    var mkdocs_page_name = "MySQL\u4f7f\u7528";
+    var mkdocs_page_input_path = "database/MySQL.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -96,32 +96,17 @@
 		
     <span class="caption-text">第三章：Requests使用</span>
     <ul class="subnav">
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Requests基础使用</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#requests">Requests基础使用</a></li>
-    
-
-    <li class="toctree-l3"><a href="#_1">安装</a></li>
-    
-
-    <li class="toctree-l3"><a href="#_2">发送请求</a></li>
-    
-
-    <li class="toctree-l3"><a href="#_3">作业</a></li>
-    
-
-    </ul>
+    <a class="" href="../../requests/basic_useage/">Requests基础使用</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../request_source_code/">Requests源码分析</a>
+    <a class="" href="../../requests/request_source_code/">Requests源码分析</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../request_attention/">注意事项</a>
+    <a class="" href="../../requests/request_attention/">注意事项</a>
                 </li>
     </ul>
 	    </li>
@@ -151,15 +136,35 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../../database/MongoDB/">MongoDB使用</a>
+    <a class="" href="../MongoDB/">MongoDB使用</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">MySQL使用</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#mysql">MySQL使用</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#_1">环境安装</a></li>
+        
+            <li><a class="toctree-l4" href="#_2">连接</a></li>
+        
+            <li><a class="toctree-l4" href="#cursorsql">创建cursor、执行SQL</a></li>
+        
+            <li><a class="toctree-l4" href="#_3">查询数据</a></li>
+        
+            <li><a class="toctree-l4" href="#_4">设置游标类型</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
-    <a class="" href="../../database/MySQL/">MySQL使用</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../../database/attention/">注意事项</a>
+    <a class="" href="../attention/">注意事项</a>
                 </li>
     </ul>
 	    </li>
@@ -186,11 +191,11 @@
     
       
         
-          <li>第三章：Requests使用 &raquo;</li>
+          <li>第五章：MongoDB与MySQL &raquo;</li>
         
       
     
-    <li>Requests基础使用</li>
+    <li>MySQL使用</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -200,51 +205,98 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="requests">Requests基础使用</h1>
-<p>在google中搜索requests的结果：</p>
-<p><img alt="" src="https://ws3.sinaimg.cn/large/006tKfTcly1g1igx3ei57j313a0pfn38.jpg" /></p>
-<p>有中文也有英文文档，如果英文还OK就可以去撸英文文档。中文文档地址：<a href="http://docs.python-requests.org/zh_CN/latest/">Requests: 让 HTTP 服务人类</a></p>
-<p>requests作为Python最出名的第三方库，各方面的教程已经非常完善，尤其是基础用法。</p>
-<h1 id="_1">安装</h1>
-<p>最简单的当然是使用pip安装：</p>
-<pre><code class="bash">$ pip install requests
+                <h1 id="mysql">MySQL使用</h1>
+<p>MySQL是最常见的关系型数据库，应用很广泛。</p>
+<h2 id="_1">环境安装</h2>
+<p>docker: <code>docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql</code></p>
+<p><code>pip3 install PyMySQL</code></p>
+<h2 id="_2">连接</h2>
+<p>先创建一张表</p>
+<pre><code class="sql">CREATE TABLE `users` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `email` varchar(255) COLLATE utf8_bin NOT NULL,
+    `password` varchar(255) COLLATE utf8_bin NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin
+AUTO_INCREMENT=1 ;
 </code></pre>
 
-<p>如果你的Python3版本对应的pip软链是pip3，记得更换为pip3。</p>
-<p>如果安装有问题，参考：<a href="http://docs.python-requests.org/zh_CN/latest/user/install.html">安装 Requests</a></p>
-<h1 id="_2">发送请求</h1>
-<pre><code class="python">&gt;&gt;&gt; import requests
-&gt;&gt;&gt; r = requests.get('https://api.github.com/events')
-&gt;&gt;&gt; r = requests.post('http://httpbin.org/post', data = {'key':'value'})
-&gt;&gt;&gt; r = requests.put('http://httpbin.org/put', data = {'key':'value'})
-&gt;&gt;&gt; r = requests.delete('http://httpbin.org/delete')
-&gt;&gt;&gt; r = requests.head('http://httpbin.org/get')
-&gt;&gt;&gt; r = requests.options('http://httpbin.org/get')
+<pre><code class="python">import pymysql.cursors
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user='user',
+                             password='passwd',
+                             db='db',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
 </code></pre>
 
-<p>参见：<a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html#id2">快速上手</a></p>
-<p>可以看到使用requests发送请求非常简单，我们来看看使用urllib的代码</p>
-<pre><code class="python">import urllib.request
+<h2 id="cursorsql">创建cursor、执行SQL</h2>
+<pre><code class="python">import pymysql.cursors
 
-req = urllib.request.Request('http://www.example.com/')
-req.add_header('Referer', 'http://www.python.org/')
-r = urllib.request.urlopen(req)
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user='user',
+                             password='passwd',
+                             db='db',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
 
-result = f.read().decode('utf-8')
+
+try:
+    with connection.cursor() as cursor:
+        # Create a new record
+        sql = &quot;INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)&quot;
+        cursor.execute(sql, ('webmaster@python.org', 'very-secret'))
+
+    # connection is not autocommit by default. So you must commit to save
+    # your changes.
+    connection.commit()
+
+    with connection.cursor() as cursor:
+        # Read a single record
+        sql = &quot;SELECT `id`, `password` FROM `users` WHERE `email`=%s&quot;
+        cursor.execute(sql, ('webmaster@python.org',))
+        result = cursor.fetchone()
+        print(result)
+finally:
+    connection.close()
 </code></pre>
 
-<p>关于requests与urllib，强烈建议是选择requests，这里有一个非常经典的回答 <a href="https://stackoverflow.com/questions/2018026/what-are-the-differences-between-the-urllib-urllib2-and-requests-module">What are the differences between the urllib, urllib2, and requests module?</a></p>
-<p>至于其他的参见的添加headers，这里就不说了，看文档即可。</p>
-<p>这一节任务就是把<a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html">快速上手</a>的内容看完，并完成下面的作业。</p>
-<h1 id="_3">作业</h1>
-<p>给你三个网址，试试使用requests抓取html</p>
-<ol>
-<li><code>https://www.baidu.com</code></li>
-<li><code>https://www.toutiao.com</code></li>
-<li><code>https://www.zhihu.com</code></li>
-<li><code>https://www.google.com</code></li>
-</ol>
-<p>你可能会发现一些奇怪的现象，别着急，下一节会继续讲。</p>
+<p>将会输出：<code>{'password': 'very-secret', 'id': 1}</code></p>
+<h2 id="_3">查询数据</h2>
+<pre><code class="python"># 执行查询 SQL
+cursor.execute('SELECT * FROM `users`')
+# 获取单条数据
+cursor.fetchone()
+# 获取前N条数据
+cursor.fetchmany(3)
+# 获取所有数据
+cursor.fetchall()
+</code></pre>
+
+<h2 id="_4">设置游标类型</h2>
+<p>查询时，默认返回的数据类型为元组，可以自定义设置返回类型。支持5种游标类型：</p>
+<ul>
+<li>Cursor: 默认，元组类型</li>
+<li>DictCursor: 字典类型</li>
+<li>DictCursorMixin: 支持自定义的游标类型，需先自定义才可使用</li>
+<li>SSCursor: 无缓冲元组类型</li>
+<li>SSDictCursor: 无缓冲字典类型</li>
+</ul>
+<p>无缓冲游标类型，适用于数据量很大，一次性返回太慢，或者服务端带宽较小时。</p>
+<p>创建方法.创建连接时，通过 cursorclass 参数指定类型：</p>
+<pre><code class="python">connection = pymysql.connect(host='localhost',
+                             user='root',
+                             password='root',
+                             db='demo',
+                             charset='utf8',
+                             cursorclass=pymysql.cursors.DictCursor)
+</code></pre>
+
+<p>也可以在创建游标时指定类型：</p>
+<p><code>cursor = connection.cursor(cursor=pymysql.cursors.DictCursor)</code></p>
               
             </div>
           </div>
@@ -252,10 +304,10 @@ result = f.read().decode('utf-8')
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../request_source_code/" class="btn btn-neutral float-right" title="Requests源码分析">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../attention/" class="btn btn-neutral float-right" title="注意事项">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../network/session/" class="btn btn-neutral" title="实战：模拟登陆"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../MongoDB/" class="btn btn-neutral" title="MongoDB使用"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -281,10 +333,10 @@ result = f.read().decode('utf-8')
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../../network/session/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../MongoDB/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../request_source_code/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../attention/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
