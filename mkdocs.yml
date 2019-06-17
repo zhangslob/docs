@@ -21,7 +21,10 @@ nav:
       - MongoDB使用: database/MongoDB.md
       - MySQL使用: database/MySQL.md
       - 注意事项: database/attention.md
-
+    - 第六章：多线程爬虫:
+      - 线程、进程、协程（面试高频）: thread/Thread_process_coroutine.md
+#      - MySQL使用: database/MySQL.md
+#      - 注意事项: database/attention.md
 
 theme: readthedocs
 
