@@ -86,4 +86,4 @@
 
 顺便一提，非常流行的一个爬虫框架Scrapy就是用到异步框架Twisted来进行任务的调度，这也是Scrapy框架高性能的原因之一。
 
-
+最后推荐阅读：[《深入理解Python异步编程 上》](http://python.jobbole.com/88291/)
