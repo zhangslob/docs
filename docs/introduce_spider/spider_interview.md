@@ -8,7 +8,7 @@
 
 - http协议、tcp协议(几次握手)
 - top命令
-- Linu/Mac 下虚拟内存（Swap）
+- Linux/Mac 下虚拟内存（Swap）
 - 线程、进程、协程
 - Async 相关、事件驱动相关
 - 阻塞、非阻塞
